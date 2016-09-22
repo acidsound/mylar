@@ -6,7 +6,7 @@ Meteor.publish("messages", function(roomID){
     return Messages.find({rID: roomID});
 });
 
-Meteor.publish("users", function() { 
+Meteor.publish("allUsers", function() {
   return Meteor.users.find({}, {fields: {}});
 });
 

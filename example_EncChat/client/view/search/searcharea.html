@@ -1,0 +1,32 @@
+<template name="searcharea">
+	<center>
+
+		<div class="well">
+			<input type="text" id="search_word" />
+			<button id="search" class="btn">Search in all rooms</button><br>
+			{{#if searchHappened}}
+				<div id="SearchCount">Found {{resCount}} results.</div>
+			{{/if}}
+			<br>
+			<div class="well row-fluid roomsDisplay">
+				{{#if hasResults}}
+					{{#each rooms }}
+						<div class="row-fluid">
+							<div class="span6">
+								"{{message}}"
+							</div>
+							<div class="span6">
+								in Room
+								<button  class="btn btn-primary joinRoom"
+								         roomId="{{rID}}" roomTitle="{{roomTitle}}">
+									{{roomTitle}}</button>
+							</div>
+						</div>
+					{{/each}}
+				{{/if}}
+			</div>
+
+		</div>
+	</center>
+
+</template>

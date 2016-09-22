@@ -43,10 +43,10 @@ Meteor.startup(function () {
     // sub
     if (Meteor.isClient) {
         Tracker.autorun(function () {
-            Meteor.subscribe("users");
+            Meteor.subscribe("allUsers");
         })
     }
-})
+});
 
 
 /* trusted IDP: */

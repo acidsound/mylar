@@ -1,0 +1,43 @@
+<template name="lobby">
+	<center>
+		<form class="form-inline">
+			<input id="roomTitleName" class="input-medium" type="text" placeholder="Room title" />
+			<button id="createRoomBtn" class="btn btn-primary">Create room!</button>
+		</form>
+		<div id="createRoomErroMsg"></div>
+
+		<div class="well row-fluid roomsDisplay">
+			{{#if rooms.count}}
+				<h4>{{rooms.count}} Available Rooms Now</h4>
+				{{#each rooms }}
+					<div class="row-fluid">
+						<div class="span6">
+							{{roomTitle}}
+						</div>
+
+						<div class="span6">
+							<button id="{{roomTitle}}" class="btn btn-primary joinRoom" roomId="{{_id}}" roomTitle="{{roomTitle}}" people="{{peopleUsername}}">Join</button>
+							<button class="btn btn-info tooltip-{{_id}}" rel="tooltip" title="{{peopleUsername}}">Who's in?</button>
+							<button id="delete-{{roomTitle}}" class="btn btn-danger deleteRoom" roomId="{{_id}}">x</button>
+						</div>
+					</div>
+					<div id="deleteAlert-{{_id}}" class="deleteAlert" style="display: none;">
+						<div class="alert alert-block alert-error fade in">
+							<h4 class="alert-heading">Delete Room</h4>
+							<p>Are you sure you want to delete this room: <b>{{roomTitle}}</b>?</p>
+							<p>
+								<button class="btn btn-danger deleteConfirm" id="delconf-{{roomTitle}}" roomId="{{_id}}">Delete</button>
+								<button class="btn cancelDelete" roomId="{{_id}}">Cancel</button>
+							</p>
+						</div>
+					</div>
+
+					<br/>
+				{{/each}}
+			{{else}}
+				<h4>No Available Rooms Now :(</h4>
+			{{/if}}
+		</div>
+	</center>
+
+</template>
