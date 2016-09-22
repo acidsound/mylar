@@ -8,10 +8,10 @@ Template.home.helpers
     Meteor.users.find Online: true
 
 Template.home.events
-  'click #chatnowBtn': (evt) ->
+  'click #chatnowBtn': ->
     user = $('#username').val().trim()
     password = $('#password').val().trim()
-    if user.length >= 0 and password.length != 0
+    if user.length and password.length
       Accounts.createUser {
         username: user
         email: user
@@ -21,7 +21,7 @@ Template.home.events
           $('#errorUsernameMsg').text error
     else
       $('#errorUsernameMsg').text 'Username and Password must be non empty.'
-  'click #logoutBtn': (evt) ->
+  'click #logoutBtn': ->
     #UPDATE USER COLLECTION ONLINE FALSE
     Meteor.call 'UpdateOnlineFalse'
     Meteor.logout()

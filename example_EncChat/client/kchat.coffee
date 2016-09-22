@@ -1,3 +1,7 @@
+Meteor.startup ->
+  Tracker.autorun ->
+    Meteor.subscribe 'oneUser'
+
 debug = false
 
 @roomprinc = (cb) ->
@@ -13,7 +17,7 @@ debug = false
 
 @joinRoom = (evt) ->
   roomID = $(evt.target).attr('roomId')
-  msg_handle = Meteor.subscribe('messages', roomID, ->
+  @msg_handle = Meteor.subscribe('messages', roomID, ->
     roomTitle = $(evt.target).attr('roomTitle')
     #TODO: display creator to users
     roomCreatorID = Rooms.findOne(
@@ -24,13 +28,11 @@ debug = false
       console.log 'join room ' + roomTitle + ' with creator ' + creator
     #UPDATE USER WHEN JOINED ROOM
     Meteor.call 'UpdateUserRoomInfoToInside', roomID, roomTitle
-    return
   )
-  return
 
 #FUNCTIONS
 
-msg_handle = undefined
+@msg_handle = undefined
 window.jsErrors = []
 
 window.onerror = ->

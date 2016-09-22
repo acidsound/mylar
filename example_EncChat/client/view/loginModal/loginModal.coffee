@@ -3,12 +3,12 @@ Template.loginModal.events 'click #chatnowLoginBtn': (evt) ->
   # login user
   username = $('#usernameLogin').val().trim()
   password = $('#passwordLogin').val().trim()
-  Meteor.loginWithPassword { email: username }, password, (error) ->
+  Meteor.loginWithPassword email: username, password, (error) ->
     if error
-#alert("Failed to login");
+      #alert("Failed to login");
       $('#loginErroMsg').text 'Warning: Incorrect Login: ' + error
     else
-#UPDATE USER COLLECTION ONLINE TRUE
+      #UPDATE USER COLLECTION ONLINE TRUE
       Meteor.call 'UpdateOnlineTrue'
       $('#usernameLogin').val ''
       $('#passwordLogin').val ''
